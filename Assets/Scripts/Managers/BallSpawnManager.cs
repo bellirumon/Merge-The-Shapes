@@ -1,7 +1,7 @@
 namespace Zanta
 {
     using UnityEngine;
-
+    using UnityEngine.Serialization;
 
     public class BallSpawnManager : MonoBehaviour
     {
@@ -9,7 +9,7 @@ namespace Zanta
         private GameObject _currentBall;
         private GameObject _nextBall;
 
-        [SerializeField] private GameObject[] _ballPrefabs;
+        [SerializeField] private GameObject[] _spawnableBallPrefabs;
         [SerializeField] private Transform _currentBallSpawnPos;
         [SerializeField] private Transform _nextBallSpawnPos;
 
@@ -37,9 +37,9 @@ namespace Zanta
 
         public GameObject SpawnBall(Vector3 position)
         {
-            byte index = (byte)Random.Range(0, _ballPrefabs.Length);
+            byte index = (byte)Random.Range(0, _spawnableBallPrefabs.Length);
 
-            GameObject ballGo = Instantiate(_ballPrefabs[index], position, Quaternion.identity);
+            GameObject ballGo = Instantiate(_spawnableBallPrefabs[index], position, Quaternion.identity);
 
             if (ballGo.TryGetComponent<Ball>(out Ball ball))
             {

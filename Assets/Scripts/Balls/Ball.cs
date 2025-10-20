@@ -5,6 +5,7 @@ namespace Zanta
 
     public abstract class Ball : MonoBehaviour
     {
+        //every ball should define its radius thats publicly accessible
         public abstract EBallType BallType { get; }
 
         protected abstract void OnCollisionEnter(Collision collision);

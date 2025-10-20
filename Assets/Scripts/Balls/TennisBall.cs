@@ -2,18 +2,19 @@ namespace Zanta
 {
     using UnityEngine;
 
-    public class SoccerBall : Ball
+    public class TennisBall : Ball
     {
+
         [SerializeField] private EBallType _ballType;
 
-        [SerializeField] private GameObject _basketBallPrefab;
+        [SerializeField] private GameObject _bowlingBallPrefab;
 
         public override EBallType BallType => _ballType;
 
 
         protected override void OnCollisionEnter(Collision collision)
         {
-            //if collision not with a soccerball, do nothing
+            //if collision not with the same ball type, do nothing
             if (!collision.gameObject.TryGetComponent<Ball>(out Ball ball))
                 return;
 
@@ -28,7 +29,7 @@ namespace Zanta
             }
 
             gameObject.SetActive(false);
-            Instantiate(_basketBallPrefab, collision.GetContact(0).point, Quaternion.identity);
+            Instantiate(_bowlingBallPrefab, collision.GetContact(0).point, Quaternion.identity);
         }
 
         public override bool TrySetDynamic()
